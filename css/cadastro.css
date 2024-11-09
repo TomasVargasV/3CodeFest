@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+  }
+  
+  /* body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 0.7) 0%, rgba(247, 230, 8, 0.7) 33%, rgba(247, 230, 8, 0.7) 66%, rgba(238, 11, 11, 0.7) 100%);
+  } */
+  
+  /* body {
+    background-color: rgb(2, 0, 36); /* Cor sólida no lugar do gradiente 
+    /* O gradiente foi removido 
+  } */
+  
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centraliza os itens horizontalmente */
+    width: 100%;
+    /* Garante que o nav ocupe toda a largura */
+    padding: 0;
+    /* Remove padding extra */
+  }
+  
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .newsletter-title {
+    text-align: center;
+    margin-left: 20px;
+    /* Ajuste conforme necessário para o espaçamento */
+    font-size: 3rem;
+    /* Ajuste o tamanho do texto para "Newsletter" */
+    color: #333;
+    /* Cor do título */
+  }
+  
+  .navbar-brand img {
+    vertical-align: middle;
+  }
+  
+  h1,
+  h3,
+  h4 {
+    text-align: center;
+    color: black;
+  }
+  
+  #fundo {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 3rem;
+    padding: 2rem;
+    background-color: rgba(221, 221, 221, 0.5);
+  }
+  
+  #container button {
+    background-color: aliceblue;
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(39, 39, 43);
+  }
+  
+  #container button:hover {
+    background-color: rgb(224, 208, 163);
+    border: 1px solid rgb(255, 255, 255);
+  }
+  /* Estilo geral para o contêiner dos botões */
+  #button {
+    display: flex;
+    flex-direction: row; /* Alinha os botões na horizontal */
+    justify-content: center; /* Centraliza os botões na horizontal */
+    gap: 15px; /* Adiciona espaço entre os botões */
+    padding: 10px;
+    align-items: center; /* Centraliza os botões verticalmente */
+  }
+  
+  /* Estilo personalizado para os botões */
+  #button .btn {
+    font-size: 16px; /* Tamanho da fonte */
+    padding: 10px 20px; /* Espessura do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    width: 200px; /* Largura fixa para os botões */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
+  }
+  
+  /* Cor do botão padrão (Salvar e Limpar) */
+  #button .btn-primary {
+    background-color: #f9c331; /* Cor de fundo do botão */
+    border: none; /* Remove a borda padrão */
+    color: black; /* Cor do texto */
+  }
+  
+  /* Efeito ao passar o mouse */
+  #button .btn-primary:hover {
+    background-color: #ede9b8; /* Cor do botão quando o mouse está em cima */
+    transform: translateY(-3px); /* Levanta ligeiramente o botão */
+  }
+  
+  /* Efeito ao focar no botão */
+  #button .btn-primary:focus {
+    outline: none; /* Remove o contorno padrão ao focar */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra azul ao focar */
+  }
+  
+  /* Botões com cor diferente, se desejado */
+  #button .btn-secondary {
+    background-color: #6c757d; /* Cor do botão secundário */
+  }
+  
+  #button .btn-secondary:hover {
+    background-color: #5a6268; /* Cor do botão secundário ao passar o mouse */
+  }
+  
+  
+  .navbar-brand strong {
+    display: inline-block;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 30px;
+    font-size: 30px;
+    word-break: break-all;
+  }
+  
+  .d-grid {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  @media (max-width: 350px) {
+    .form-control {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 800px) {
+    #fundo {
+      margin: 0rem;
+      padding: 0rem;
+      font-size: 20px;
+    }
+  
+    .form-floating {
+      font-size: 10px;
+      word-break: break-all;
+    }
+  }
+  .imagemLogo{
+    height: 70px;
+  }

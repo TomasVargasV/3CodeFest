@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro Prefeitura de São Leo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./css/cadastro.css" />
+    
+    <script>
+        function limparFormulario() {
+         
+            document.getElementById("formCadastro").reset();
+
+            
+            const checkboxes = document.querySelectorAll("input[type='checkbox']");
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+           
+            const radios = document.querySelectorAll("input[type='radio']");
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+
+        function salvar() {
+
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const whatsapp = document.getElementById("whatsapp").value;
+        const senha = document.getElementById("senha").value;
+        const dtNasc = document.getElementById("dtNasc").value;
+        const genero = document.getElementById("genero").value;
+        const cidade = document.getElementById("cidade").value;
+        const estado = document.getElementById("estado").value;
+
+
+        const preferencias = [];
+        if (document.getElementById("aventura").checked) preferencias.push("Aventura");
+        if (document.getElementById("ecoturismo").checked) preferencias.push("Ecoturismo");
+        if (document.getElementById("cultural").checked) preferencias.push("Cultural e Histórico");
+        if (document.getElementById("gastronomico").checked) preferencias.push("Gastronômico");
+        if (document.getElementById("praias").checked) preferencias.push("Praias e Natureza");
+        if (document.getElementById("urbano").checked) preferencias.push("Urbano e Compras");
+
+        const duracao = [];
+        if (document.getElementById("curta").checked) preferencias.push("Curta");
+        if (document.getElementById("media").checked) preferencias.push("Media");
+        if (document.getElementById("longa").checked) preferencias.push("Longa");
+
+        const hospedagem = [];
+        if (document.getElementById("luxo").checked) preferencias.push("Hoteis de Luxo");
+        if (document.getElementById("economicos").checked) preferencias.push("Hoteis Economicos");
+        if (document.getElementById("pousadas").checked) preferencias.push("Pousadas e Albergues");
+        if (document.getElementById("camping").checked) preferencias.push("Camping e Natureza");
+
+        const companhia = [];
+        if (document.getElementById("solo").checked) preferencias.push("Solo");
+        if (document.getElementById("familia").checked) preferencias.push("Familia");
+        if (document.getElementById("amigos").checked) preferencias.push("Amigos");
+        if (document.getElementById("casal").checked) preferencias.push("Casal");
+
+        const interesses = [];
+        if (document.getElementById("trilha").checked) preferencias.push("Trilha e Aventuras");
+        if (document.getElementById("museus").checked) preferencias.push("Museus e Historicos");
+        if (document.getElementById("compras").checked) preferencias.push("Compras e Lazer");
+        if (document.getElementById("esportes").checked) preferencias.push("Esportes Aquaticos");
+        if (document.getElementById("festivais").checked) preferencias.push("Festivais e Eventos");
+
+        const frequencia = [];
+        if (document.getElementById("semanal").checked) preferencias.push("Semanal");
+        if (document.getElementById("quinzenal").checked) preferencias.push("Quinzenal");
+        if (document.getElementById("mensal").checked) preferencias.push("Mensal");
+
+        const comunicacao = [];
+        if (document.getElementById("emailCanal").checked) preferencias.push("emailComnunicacao");
+        if (document.getElementById("sms").checked) preferencias.push("SMS");
+        if (document.getElementById("whatsappCanal").checked) preferencias.push("whatsappCanal");
+
+        const conteudo = [];
+        if (document.getElementById("promocoes").checked) preferencias.push("Promocoes e Ofertas");
+        if (document.getElementById("roteiro").checked) preferencias.push("Dicas de Roteiro");
+        if (document.getElementById("eventos").checked) preferencias.push("Eventos e Festivais");
+        if (document.getElementById("novidades").checked) preferencias.push("Novidades Culturais e Historicas");
+
+
+        // Criação do objeto JSON com os dados do formulário
+        const dados = {
+            nome: nome,
+            email: email,
+            whatsapp: whatsapp,
+            senha: senha,
+            dtNasc: dtNasc,
+            genero: genero,
+            cidade: cidade,
+            estado: estado,
+            preferencias: preferencias,
+            
+        };
+
+    fetch("http://localhost:3000/salvar-dados", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Erro ao salvar dados");
+        return response.text();
+    })
+    .then(mensagem => {
+        console.log(mensagem);
+        document.getElementById("jsonDados").textContent = JSON.stringify(dados, null, 2);
+    })
+    .catch(error => {
+        console.error("Erro:", error);
+    });
+}
+
+    </script>
+</head>
+
+<body>
+    <header class="p-3 border-bottom">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <img
+            src="./images/SlFest.png"
+            class="imagemLogo"
+          >
+          </img>
+
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li>
+              <a href="./index.html" class="nav-link px-2 link-secondary">Home</a>
+            </li>
+            <li>
+              <a href="#pessoais" class="nav-link px-2 link-body-emphasis"
+                >Informações pessoais</a
+              >
+            </li>
+            <li>
+              <a href="#turismo" class="nav-link px-2 link-body-emphasis"
+                >Preferências de turismo</a
+              >
+            </li>
+            <li>
+              <a href="#comunicacao" class="nav-link px-2 link-body-emphasis"
+                >Preferências de comunicação</a
+              >
+            </li>
+          </ul>
+
+          <div class="dropdown text-end">
+            <a
+              href="./cadastro.html"
+              class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              target="_blank"
+            >
+              <img
+                src="https://github.com/mdo.png"
+                alt="mdo"
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="fundo">
+        <div class="container">
+            <div class="row">
+                <div id="header" class="container">
+                    <h3 id="pessoais">Informações Pessoais</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dados -->
+        <div id="container" class="container mt-3">
+            <form id="formCadastro" action="/users" method="post">
+                <div class="row">
+                    <!-- Nome Completo -->
+                    <div class="col p-2">
+                        <input id="nome" type="text" class="form-control" placeholder="Nome Completo"
+                            aria-label="Nome Completo" required />
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="col p-2">
+                        <input id="email" type="email" class="form-control" placeholder="E-mail" aria-label="E-mail"
+                            required />
+                    </div>
+                    <!-- WhatsApp -->
+                    <div class="col p-2">
+                        <input id="whatsapp" type="text" class="form-control" placeholder="WhatsApp"
+                            aria-label="" required />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Senha -->
+                    <div class="col p-2">
+                        <input id="senha" type="password" class="form-control" placeholder="Senha" aria-label="Senha"
+                            required />
+                    </div>
+
+                    <!-- Data de Nascimento -->
+                    <div class="col p-2">
+                        <input id="dtNasc" type="date" class="form-control" placeholder="Data de Nascimento"
+                            aria-label="Data de Nascimento" required />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Gênero -->
+                    <div class="col p-2">
+                        <select id="genero" class="form-select form-control" aria-label="Gênero">
+                            <option selected>Gênero (Opcional)</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Prefiro não informar">Prefiro não informar</option>
+                        </select>
+                    </div>
+
+                    <!-- Cidade -->
+                    <div class="col p-2">
+                        <input id="cidade" type="text" class="form-control" placeholder="Cidade" aria-label="Cidade"
+                            required />
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col p-2">
+                        <input id="estado" type="text" class="form-control" placeholder="Estado" aria-label="Estado"
+                            required />
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <!-- ########################## COMPOSIÇÃO FAMILIAR ################################################ -->
+
+        <div class="container mt-5">
+            <h3 class="text-center mb-4" id="turismo">Preferências de Turismo</h3>
+            <form id="formCcmp" action="/users" method="post">
+                <!-- <div class="col p-2 form-control" > -->
+
+                    <!-- Tipos de Turismo Preferidos -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tipos de Turismo Preferidos:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Aventura" id="aventura">
+                                <label class="form-check-label" for="aventura">Aventura</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Ecoturismo" id="ecoturismo">
+                                <label class="form-check-label" for="ecoturismo">Ecoturismo</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Cultural e Histórico"
+                                    id="cultural">
+                                <label class="form-check-label" for="cultural">Cultural e Histórico</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Gastronômico" id="gastronomico">
+                                <label class="form-check-label" for="gastronomico">Gastronômico</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Praias e Natureza" id="praias">
+                                <label class="form-check-label" for="praias">Praias e Natureza</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Urbano e Compras" id="urbano">
+                                <label class="form-check-label" for="urbano">Urbano e Compras</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duração Preferida de Viagens -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Duração Preferida de Viagens:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="duracao" value="Curta" id="curta">
+                                <label class="form-check-label" for="curta">Curta (fins de semana)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="duracao" value="Media" id="media">
+                                <label class="form-check-label" for="media">Média (3-7 dias)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="duracao" value="Longa" id="longa">
+                                <label class="form-check-label" for="longa">Longa (mais de 7 dias)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferências de Hospedagem -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Preferências de Hospedagem:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Hoteis de Luxo" id="luxo">
+                                <label class="form-check-label" for="luxo">Hotéis de Luxo</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Hoteis Economicos"
+                                    id="economicos">
+                                <label class="form-check-label" for="economicos">Hotéis Econômicos</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Pousadas e Albergues"
+                                    id="pousadas">
+                                <label class="form-check-label" for="pousadas">Pousadas e Albergues</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Camping e Natureza" id="camping">
+                                <label class="form-check-label" for="camping">Camping e Natureza</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Companhia para Viagens -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Companhia para Viagens:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="companhia" value="Solo" id="solo">
+                                <label class="form-check-label" for="solo">Viagens Solo</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="companhia" value="Familia"
+                                    id="familia">
+                                <label class="form-check-label" for="familia">Família</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="companhia" value="Amigos"
+                                    id="amigos">
+                                <label class="form-check-label" for="amigos">Amigos</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="companhia" value="Casal" id="casal">
+                                <label class="form-check-label" for="casal">Casal</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividades de Interesse -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Atividades de Interesse:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Trilha e Aventuras" id="trilha">
+                                <label class="form-check-label" for="trilha">Trilha e Aventuras ao Ar Livre</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Museus e Historicos" id="museus">
+                                <label class="form-check-label" for="museus">Visitas a Museus e Sítios
+                                    Históricos</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Compras e Lazer" id="compras">
+                                <label class="form-check-label" for="compras">Compras e Lazer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Esportes Aquaticos"
+                                    id="esportes">
+                                <label class="form-check-label" for="esportes">Esportes Aquáticos</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Festivais e Eventos"
+                                    id="festivais">
+                                <label class="form-check-label" for="festivais">Festivais e Eventos Locais</label>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+
+                <!-- Botão de Envio -->
+
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- ############################# ENDEREÇO ################### -->
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" id="comunicacao">Preferências de Comunicação</h2>
+            <form id="formEndereco" action="/edress" method="post">
+
+                <!-- Frequência de Recebimento da Newsletter -->
+                <!-- <div class="col p-2 form-control" style="background-color: rgba(224, 208, 163, 0.6);"> -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Frequência de Recebimento da Newsletter:</label>
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="radio" name="frequencia" value="Semanal"
+                                    id="semanal">
+                                <label class="form-check-label" for="semanal">Semanal</label>
+                            </div>
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="radio" name="frequencia" value="Quinzenal"
+                                    id="quinzenal">
+                                <label class="form-check-label" for="quinzenal">Quinzenal</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="frequencia" value="Mensal"
+                                    id="mensal">
+                                <label class="form-check-label" for="mensal">Mensal</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canal Preferido de Comunicação -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Canal Preferido de Comunicação:</label>
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="emailComunicacao" id="emailCanal">
+                                <label class="form-check-label" for="emailCanal">E-mail</label>
+                            </div>
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="SMS" id="sms">
+                                <label class="form-check-label" for="sms">SMS</label>
+                            </div>
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="whatsappCanal" id="whatsappCanal">
+                                <label class="form-check-label" for="whatsappCanal">WhatsApp</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Preferência de Conteúdo -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Preferência de Conteúdo:</label>
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="Promocoes e Ofertas"
+                                    id="promocoes">
+                                <label class="form-check-label" for="promocoes">Promoções e Ofertas</label>
+                            </div>
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="Dicas de Roteiro" id="roteiro">
+                                <label class="form-check-label" for="roteiro">Dicas de Roteiro</label>
+                            </div>
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" value="Eventos e Festivais"
+                                    id="eventos">
+                                <label class="form-check-label" for="eventos">Eventos e Festivais</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Novidades Culturais e Historicas"
+                                    id="novidades">
+                                <label class="form-check-label" for="novidades">Novidades Culturais e
+                                    Históricas</label>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+
+            </form>
+        </div>
+
+
+
+    </div>
+    <div id="button" class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" onclick="salvar()">Salvar</button>
+        <button class="btn btn-primary" type="button" onclick="limparFormulario()">Limpar</button>
+    </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-12">
+                    <p>&copy; 2024 Prefeitura de São Leo. Todos os direitos reservados.</p>
+                    <p>Endereço: Rua Us Guri São Dev, 123, São Leopoldo - RS</p>
+                    <p>Email: contato@prefeitura.saoleo.rs.gov.br | Telefone: (51) 1234-5678</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

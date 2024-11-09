@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "Douglas",
+    "email": "douglas@mello",
+    "whatsapp": "51992883720",
+    "senha": "1233454",
+    "dtNasc": "2024-11-29",
+    "genero": "Masculino",
+    "cidade": "São Leopoldo",
+    "estado": "RS",
+    "preferencias": [
+      "Gastronômico",
+      "Longa",
+      "Pousadas e Albergues",
+      "Casal",
+      "Museus e Historicos",
+      "Quinzenal",
+      "SMS",
+      "Dicas de Roteiro"
+    ]
+  },
+  {
+    "nome": "tomas",
+    "email": "tomas@gmail.com",
+    "whatsapp": "51986825453",
+    "senha": "123",
+    "dtNasc": "2024-11-20",
+    "genero": "Masculino",
+    "cidade": "sao leo",
+    "estado": "rs",
+    "preferencias": [
+      "Gastronômico",
+      "Media",
+      "Hoteis Economicos",
+      "Familia",
+      "Compras e Lazer",
+      "Mensal",
+      "SMS",
+      "Dicas de Roteiro"
+    ]
+  }
+]
